@@ -37,7 +37,7 @@
 							</p>
 						</Popover>
 					</div>
-					<Mailbox
+					<Mailbox v-if="hasImportantEnvelopes"
 						class="nameimportant"
 						:account="unifiedAccount"
 						:mailbox="unifiedInbox"
@@ -146,6 +146,9 @@ export default {
 		},
 		hasEnvelopes() {
 			return this.$store.getters.getEnvelopes(this.mailbox.databaseId, this.searchQuery).length > 0
+		},
+		hasImportantEnvelopes() {
+			return this.$store.getters.getEnvelopes(this.unifiedInbox.databaseId, this.searchQuery).length > 0
 		},
 		showThread() {
 			return (this.mailbox.isPriorityInbox === true || this.hasEnvelopes) && this.$route.name === 'message'
