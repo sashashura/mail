@@ -22,9 +22,10 @@
 					:bus="bus" />
 				<template v-else>
 					<div class="app-content-list-item">
-						<SectionTitle class="important" :name="t('mail', 'Important')" />
+						<SectionTitle v-if="hasImportantEnvelopes" class="important" :name="t('mail', 'Important')" />
 						<Popover trigger="hover focus">
-							<ButtonVue slot="trigger"
+							<ButtonVue v-if="hasImportantEnvelopes"
+								slot="trigger"
 								type="tertiary-no-background"
 								:aria-label="t('mail', 'Important info')"
 								class="button">
@@ -148,7 +149,10 @@ export default {
 			return this.$store.getters.getEnvelopes(this.mailbox.databaseId, this.searchQuery).length > 0
 		},
 		hasImportantEnvelopes() {
-			return this.$store.getters.getEnvelopes(this.unifiedInbox.databaseId, this.searchQuery).length > 0
+			if (this.searchQuery) {
+				return this.$store.getters.getEnvelopes(this.unifiedInbox.databaseId, this.searchQuery + ' is:important').length > 0
+			}
+			return false
 		},
 		showThread() {
 			return (this.mailbox.isPriorityInbox === true || this.hasEnvelopes) && this.$route.name === 'message'
