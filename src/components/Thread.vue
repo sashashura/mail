@@ -1,6 +1,16 @@
 <template>
 	<AppContentDetails id="mail-message">
-		<Loading v-if="loading" />
+		<div v-if="loading">
+			<div v-for="i in 10" :key="i" class="item-list__entry">
+				<NcAvatar class="item-avatar" :size="44" />
+				<div class="item__details">
+					<h3>&nbsp;</h3>
+					<p class="message">
+						&nbsp;
+					</p>
+				</div>
+			</div>
+		</div>
 		<template v-else>
 			<div id="mail-thread-header">
 				<div id="mail-thread-header-fields">
@@ -48,12 +58,11 @@
 
 <script>
 import { NcAppContentDetails as AppContentDetails, NcPopover as Popover } from '@nextcloud/vue'
-
+import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar'
 import { prop, uniqBy } from 'ramda'
 import debounce from 'lodash/fp/debounce'
 
 import { getRandomMessageErrorMessage } from '../util/ErrorMessageFactory'
-import Loading from './Loading'
 import logger from '../logger'
 import RecipientBubble from './RecipientBubble'
 import ThreadEnvelope from './ThreadEnvelope'
@@ -61,9 +70,9 @@ import ThreadEnvelope from './ThreadEnvelope'
 export default {
 	name: 'Thread',
 	components: {
+		NcAvatar,
 		RecipientBubble,
 		AppContentDetails,
-		Loading,
 		ThreadEnvelope,
 		Popover,
 	},
@@ -424,5 +433,39 @@ export default {
 }
 .user-bubble__title {
 	cursor: pointer;
+}
+/* skeleton */
+.item-list__entry {
+	display: flex;
+	align-items: flex-start;
+	padding: 8px;
+	.item-avatar {
+		position: relative;
+		margin-top: auto;
+		margin-bottom: auto;
+		background-color: var(--color-background-dark) !important;
+	}
+	.item__details {
+		padding-left: 8px;
+		max-height: 44px;
+		flex-grow: 1;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		h3,
+		.message {
+			white-space: nowrap;
+			background-color: var(--color-background-dark);
+		}
+		h3 {
+			font-size: 100%;
+			margin: 0;
+		}
+		.message {
+			width: 80%;
+			height: 15px;
+			margin-top: 5px;
+		}
+	}
 }
 </style>

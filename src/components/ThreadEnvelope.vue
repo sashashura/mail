@@ -133,7 +133,17 @@
 				</template>
 			</div>
 		</div>
-		<Loading v-if="loading" />
+		<div v-if="loading">
+			<div v-for="i in 10" :key="i" class="item-list__entry">
+				<Avatar class="item-avatar" :size="44" />
+				<div class="item__details">
+					<h3>&nbsp;</h3>
+					<p class="message">
+					&nbsp;
+					</p>
+				</div>
+			</div>
+		</div>
 		<Message v-else-if="message"
 			:envelope="envelope"
 			:message="message"
@@ -152,7 +162,6 @@ import Error from './Error'
 import importantSvg from '../../img/important.svg'
 import IconFavorite from 'vue-material-design-icons/Star'
 import JunkIcon from './icons/JunkIcon'
-import Loading from './Loading'
 import logger from '../logger'
 import Message from './Message'
 import MenuEnvelope from './MenuEnvelope'
@@ -177,7 +186,6 @@ export default {
 		Error,
 		IconFavorite,
 		JunkIcon,
-		Loading,
 		MenuEnvelope,
 		Moment,
 		Message,
@@ -562,5 +570,39 @@ export default {
 	}
 	.junk-favorite-position {
 		margin-bottom: 36px !important;
+	}
+	/* skeleton */
+	.item-list__entry {
+		display: flex;
+		align-items: flex-start;
+		padding: 8px;
+		.item-avatar {
+			position: relative;
+			margin-top: auto;
+			margin-bottom: auto;
+			background-color: var(--color-background-dark) !important;
+		}
+		.item__details {
+			padding-left: 8px;
+			max-height: 44px;
+			flex-grow: 1;
+			overflow: hidden;
+			display: flex;
+			flex-direction: column;
+			h3,
+			.message {
+				white-space: nowrap;
+				background-color: var(--color-background-dark);
+			}
+			h3 {
+				font-size: 100%;
+				margin: 0;
+			}
+			.message {
+				width: 80%;
+				height: 15px;
+				margin-top: 5px;
+			}
+		}
 	}
 </style>
