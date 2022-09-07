@@ -24,7 +24,17 @@
 		:error="t('mail', 'Could not open mailbox')"
 		message=""
 		role="alert" />
-	<Loading v-else-if="loadingEnvelopes" :hint="t('mail', 'Loading messages …')" role="alert" />
+	<div v-else-if="loadingEnvelopes">
+		<div v-for="i in 20" :key="i" class="item-list__entry">
+			<NcAvatar class="item-avatar" :size="44" />
+			<div class="item__details">
+				<h3>&nbsp;</h3>
+				<p class="message">
+					&nbsp;
+				</p>
+			</div>
+		</div>
+	</div>
 	<Loading
 		v-else-if="loadingCacheInitialization"
 		:hint="t('mail', 'Loading messages …')"
@@ -45,6 +55,7 @@
 </template>
 
 <script>
+import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar'
 import EmptyMailbox from './EmptyMailbox'
 import EnvelopeList from './EnvelopeList'
 import Error from './Error'
@@ -64,6 +75,7 @@ import NoTrashMailboxConfiguredError
 export default {
 	name: 'Mailbox',
 	components: {
+		NcAvatar,
 		EmptyMailboxSection,
 		EmptyMailbox,
 		EnvelopeList,
@@ -492,6 +504,40 @@ export default {
 	::v-deep #load-more-mail-messages {
 		margin-top: 0;
 		margin-bottom: 8px;
+	}
+}
+/* skeleton */
+.item-list__entry {
+	display: flex;
+	align-items: flex-start;
+	padding: 8px;
+	.item-avatar {
+		position: relative;
+		margin-top: auto;
+		margin-bottom: auto;
+		background-color: var(--color-background-dark) !important;
+	}
+	.item__details {
+		padding-left: 8px;
+		max-height: 44px;
+		flex-grow: 1;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		h3,
+		.message {
+			white-space: nowrap;
+			background-color: var(--color-background-dark);
+		}
+		h3 {
+			font-size: 100%;
+			margin: 0;
+		}
+		.message {
+			width: 80%;
+			height: 15px;
+			margin-top: 5px;
+		}
 	}
 }
 </style>
