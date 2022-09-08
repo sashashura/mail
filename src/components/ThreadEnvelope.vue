@@ -146,8 +146,7 @@
 	</div>
 </template>
 <script>
-import Avatar from './Avatar'
-import { NcButton as ButtonVue } from '@nextcloud/vue'
+import { NcButton as ButtonVue, Avatar } from '@nextcloud/vue'
 import LoadingSkeleton from './LoadingSkeleton'
 import Error from './Error'
 import importantSvg from '../../img/important.svg'
@@ -172,6 +171,7 @@ import NoTrashMailboxConfiguredError from '../errors/NoTrashMailboxConfiguredErr
 export default {
 	name: 'ThreadEnvelope',
 	components: {
+		Avatar,
 		ButtonVue,
 		Error,
 		IconFavorite,
