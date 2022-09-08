@@ -133,17 +133,7 @@
 				</template>
 			</div>
 		</div>
-		<div v-if="loading">
-			<div v-for="i in 10" :key="i" class="item-list__entry">
-				<Avatar class="item-avatar" :size="44" />
-				<div class="item__details">
-					<h3>&nbsp;</h3>
-					<p class="message">
-					&nbsp;
-					</p>
-				</div>
-			</div>
-		</div>
+		<LoadingSkeleton v-if="loading" />
 		<Message v-else-if="message"
 			:envelope="envelope"
 			:message="message"
@@ -158,6 +148,7 @@
 <script>
 import Avatar from './Avatar'
 import { NcButton as ButtonVue } from '@nextcloud/vue'
+import LoadingSkeleton from './LoadingSkeleton'
 import Error from './Error'
 import importantSvg from '../../img/important.svg'
 import IconFavorite from 'vue-material-design-icons/Star'
@@ -181,7 +172,6 @@ import NoTrashMailboxConfiguredError from '../errors/NoTrashMailboxConfiguredErr
 export default {
 	name: 'ThreadEnvelope',
 	components: {
-		Avatar,
 		ButtonVue,
 		Error,
 		IconFavorite,
@@ -195,6 +185,7 @@ export default {
 		EmailRead,
 		EmailUnread,
 		DeleteIcon,
+		LoadingSkeleton,
 
 	},
 	props: {
@@ -570,39 +561,5 @@ export default {
 	}
 	.junk-favorite-position {
 		margin-bottom: 36px !important;
-	}
-	/* skeleton */
-	.item-list__entry {
-		display: flex;
-		align-items: flex-start;
-		padding: 8px;
-		.item-avatar {
-			position: relative;
-			margin-top: auto;
-			margin-bottom: auto;
-			background-color: var(--color-background-dark) !important;
-		}
-		.item__details {
-			padding-left: 8px;
-			max-height: 44px;
-			flex-grow: 1;
-			overflow: hidden;
-			display: flex;
-			flex-direction: column;
-			h3,
-			.message {
-				white-space: nowrap;
-				background-color: var(--color-background-dark);
-			}
-			h3 {
-				font-size: 100%;
-				margin: 0;
-			}
-			.message {
-				width: 80%;
-				height: 15px;
-				margin-top: 5px;
-			}
-		}
 	}
 </style>

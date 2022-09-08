@@ -27,17 +27,7 @@
 				</ActionButton>
 			</Actions>
 		</div>
-		<div v-if="loading">
-			<div v-for="i in 10" :key="i" class="item-list__entry">
-				<NcAvatar class="item-avatar" :size="44" />
-				<div class="item__details">
-					<h3>&nbsp;</h3>
-					<p class="message">
-						&nbsp;
-					</p>
-				</div>
-			</div>
-		</div>
+		<LoadingSkeleton v-if="loading" />
 		<div id="message-container" :class="{hidden: loading, scroll: !fullHeight}">
 			<iframe ref="iframe"
 				class="message-frame"
@@ -58,6 +48,9 @@ import IconImage from 'vue-material-design-icons/ImageSizeSelectActual'
 import IconMail from 'vue-material-design-icons/Email'
 import IconDomain from 'vue-material-design-icons/Domain'
 import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar'
+import LoadingSkeleton from './LoadingSkeleton'
+
+>>>>>>> fixup! Add skeleton for envelope list
 import logger from '../logger'
 import MdnRequest from './MdnRequest'
 const scout = new PrintScout()
@@ -71,7 +64,7 @@ export default {
 		IconImage,
 		IconMail,
 		IconDomain,
-		NcAvatar,
+		LoadingSkeleton,
 	},
 	props: {
 		url: {
@@ -201,39 +194,5 @@ export default {
 }
 ::v-deep .button-vue__icon {
 	display: none !important;
-}
-/* skeleton */
-.item-list__entry {
-	display: flex;
-	align-items: flex-start;
-	padding: 8px;
-	.item-avatar {
-		position: relative;
-		margin-top: auto;
-		margin-bottom: auto;
-		background-color: var(--color-background-dark) !important;
-	}
-	.item__details {
-		padding-left: 8px;
-		max-height: 44px;
-		flex-grow: 1;
-		overflow: hidden;
-		display: flex;
-		flex-direction: column;
-		h3,
-		.message {
-			white-space: nowrap;
-			background-color: var(--color-background-dark);
-		}
-		h3 {
-			font-size: 100%;
-			margin: 0;
-		}
-		.message {
-			width: 80%;
-			height: 15px;
-			margin-top: 5px;
-		}
-	}
 }
 </style>
