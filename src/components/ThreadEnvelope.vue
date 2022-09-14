@@ -133,7 +133,7 @@
 				</template>
 			</div>
 		</div>
-		<LoadingSkeleton v-if="loading" />
+		<LoadingSkeleton v-if="loading" :number-of-lines="10" />
 		<Message v-else-if="message"
 			:envelope="envelope"
 			:message="message"

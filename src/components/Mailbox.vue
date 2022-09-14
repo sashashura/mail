@@ -24,7 +24,7 @@
 		:error="t('mail', 'Could not open mailbox')"
 		message=""
 		role="alert" />
-	<LoadingSkeleton v-else-if="loadingEnvelopes" />
+	<LoadingSkeleton v-else-if="loadingEnvelopes" :number-of-lines="20" />
 	<Loading
 		v-else-if="loadingCacheInitialization"
 		:hint="t('mail', 'Loading messages …')"

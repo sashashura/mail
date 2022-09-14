@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div v-for="i in 20" :key="i" class="item-list__entry">
+		<div v-for="i in numberOfLines" :key="i" class="item-list__entry">
 			<NcAvatar class="item-avatar" :size="44" />
 			<div class="item__details">
 				<h3>&nbsp;</h3>
@@ -19,6 +19,12 @@ export default {
 	name: 'LoadingSkeleton',
 	components: {
 		NcAvatar,
+	},
+	props: {
+		numberOfLines: {
+			type: Number,
+			default: 20,
+		},
 	},
 }
 </script>
@@ -56,7 +62,7 @@ h3 {
 	width: 80%;
 	height: 15px;
 	margin-top: 5px;
-}
-}
+		}
+	}
 }
 </style>

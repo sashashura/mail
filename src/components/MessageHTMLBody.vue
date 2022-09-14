@@ -27,7 +27,7 @@
 				</ActionButton>
 			</Actions>
 		</div>
-		<LoadingSkeleton v-if="loading" />
+		<LoadingSkeleton v-if="loading" :number-of-lines="10" />
 		<div id="message-container" :class="{hidden: loading, scroll: !fullHeight}">
 			<iframe ref="iframe"
 				class="message-frame"
