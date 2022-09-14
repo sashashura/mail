@@ -23,7 +23,7 @@ export default {
 	props: {
 		numberOfLines: {
 			type: Number,
-			default: 20,
+			default: 10,
 		},
 	},
 }
