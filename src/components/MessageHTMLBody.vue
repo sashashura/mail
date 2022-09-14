@@ -47,10 +47,8 @@ import { NcActionButton as ActionButton, NcActions as Actions } from '@nextcloud
 import IconImage from 'vue-material-design-icons/ImageSizeSelectActual'
 import IconMail from 'vue-material-design-icons/Email'
 import IconDomain from 'vue-material-design-icons/Domain'
-import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar'
 import LoadingSkeleton from './LoadingSkeleton'
 
->>>>>>> fixup! Add skeleton for envelope list
 import logger from '../logger'
 import MdnRequest from './MdnRequest'
 const scout = new PrintScout()
